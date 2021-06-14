@@ -1,11 +1,12 @@
-<shapes-renderer class="shapesRenderer"></shapes-renderer>
-
+<shapes-renderer class="shapes-renderer"></shapes-renderer>
+<chat-info class="chat-info"></chat-info>
 <div class="chat-shapes">
-	<ul class="chat-shapes__list">
+	<ul class="chat-shapes__list card">
 		<li class="chat-shapes__item" *ngFor="let shape of defaultShapes">
 			<shape-renderer
 				(click)="onShapeClick(shape)"
 				[shape]="shape"
+				[color]="color"
 			></shape-renderer>
 		</li>
 	</ul>

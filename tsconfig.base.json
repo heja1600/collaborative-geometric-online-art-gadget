@@ -19,6 +19,9 @@
 		"paths": {
 			"@collaborative-geometric-online-art-gadget/interfaces": [
 				"libs/interfaces/src/index.ts"
+			],
+			"@collaborative-geometric-online-art-gadget/utils": [
+				"libs/utils/src/index.ts"
 			]
 		}
 	},

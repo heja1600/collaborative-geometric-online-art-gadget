@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 import { Shape } from '@collaborative-geometric-online-art-gadget/interfaces';
 import { Subscription } from 'rxjs';
-import { drawShapes } from '../../common/fill-canvas';
-import { ShapeService } from '../../services/main-chat-service';
-import { defaultShapes } from '../../views/main-chat/main-chat.component';
+import { ShapeService } from '../../services/shape-service';
+import { addShapesToCanvas } from '../../utils/fill-canvas';
+
 @Component({
 	selector: 'shapes-renderer',
 	templateUrl: './shapes-renderer.component.html',
@@ -37,15 +37,12 @@ export class ShapesRendererComponent
 	ngOnInit(): void {}
 
 	ngAfterViewInit(): void {
-		this.context = this.shapesCanvas.nativeElement.getContext(
-			'2d'
-		) as CanvasRenderingContext2D;
+		this.context = this.shapesCanvas.nativeElement.getContext('2d');
 		this.updateCanvasDimensions();
 
 		this.onShapesUpdateSubscription = this.shapeService
 			.onShapesUpdate()
 			.subscribe((shapes) => {
-				console.log(shapes);
 				this.shapes = shapes;
 				this.clearShapes();
 				this.renderShapes(this.shapes);
@@ -78,7 +75,7 @@ export class ShapesRendererComponent
 			typeof this.context !== 'undefined' &&
 			typeof this.shapes !== 'undefined'
 		) {
-			drawShapes(this.context, ...shapes);
+			addShapesToCanvas(this.context, ...shapes);
 		}
 	}
 

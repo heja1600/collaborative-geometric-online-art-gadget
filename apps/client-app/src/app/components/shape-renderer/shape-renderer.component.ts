@@ -2,16 +2,17 @@ import {
 	AfterViewInit,
 	Component,
 	ElementRef,
-	EventEmitter,
 	Input,
 	OnChanges,
 	OnInit,
-	Output,
 	SimpleChanges,
 	ViewChild,
 } from '@angular/core';
-import { Shape } from '@collaborative-geometric-online-art-gadget/interfaces';
-import { drawShapes } from '../../common/fill-canvas';
+import {
+	ColorType,
+	Shape,
+} from '@collaborative-geometric-online-art-gadget/interfaces';
+import { addShapesToCanvas } from '../../utils/fill-canvas';
 
 @Component({
 	selector: 'shape-renderer',
@@ -23,11 +24,18 @@ export class ShapeRendererComponent
 	@ViewChild('shapeCanvas', { static: false })
 	shapeCanvas!: ElementRef<HTMLCanvasElement>;
 	@Input() shape: Shape;
+	@Input() color: ColorType;
 
 	public context!: CanvasRenderingContext2D;
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes.shape && this.context) {
+			this.shape.color = this.color;
+			this.render();
+		}
+
+		if (changes.color) {
+			this.shape.color = this.color;
 			this.render();
 		}
 	}
@@ -46,7 +54,7 @@ export class ShapeRendererComponent
 			typeof this.context !== 'undefined' &&
 			typeof this.shape !== 'undefined'
 		) {
-			drawShapes(this.context, this.shape);
+			addShapesToCanvas(this.context, this.shape);
 		}
 	}
 }

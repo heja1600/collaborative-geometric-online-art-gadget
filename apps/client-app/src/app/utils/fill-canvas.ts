@@ -6,7 +6,7 @@ import {
 	Shape,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
 
-export const drawShapes = (
+export const addShapesToCanvas = (
 	context: CanvasRenderingContext2D,
 	...shapes: Shape[]
 ): void => {
@@ -18,10 +18,10 @@ export const drawShapes = (
 				const ellipse = shape as Ellipse;
 				context.beginPath();
 				context.ellipse(
-					ellipse.options.x * context.canvas.width,
-					ellipse.options.y * context.canvas.height,
-					ellipse.options.radiusX * context.canvas.width,
-					ellipse.options.radiusY * context.canvas.height,
+					ellipse.x * context.canvas.width,
+					ellipse.y * context.canvas.height,
+					ellipse.radiusX * context.canvas.width,
+					ellipse.radiusY * context.canvas.height,
 					Math.PI * 2,
 					0,
 					Math.PI * 2
@@ -31,25 +31,26 @@ export const drawShapes = (
 			/** Rectangle */
 			case ShapeType.RECTANGLE: {
 				const rectangle = shape as Rectangle;
+
 				context.rect(
-					rectangle.options.x * context.canvas.width,
-					rectangle.options.y * context.canvas.height,
-					rectangle.options.width * context.canvas.width,
-					rectangle.options.height * context.canvas.height
+					rectangle.x * context.canvas.width,
+					rectangle.y * context.canvas.height,
+					rectangle.width * context.canvas.width,
+					rectangle.height * context.canvas.height
 				);
 				break;
 			}
 			/** Path */
 			case ShapeType.PATH: {
 				const path = shape as Path;
-				if (path.options.points.length === 0) {
+				if (path.points.length === 0) {
 					break;
 				}
 				context.moveTo(
-					path.options.points[0].x * context.canvas.width,
-					path.options.points[0].y * context.canvas.height
+					path.points[0].x * context.canvas.width,
+					path.points[0].y * context.canvas.height
 				);
-				path.options.points
+				path.points
 					.slice(1)
 					.forEach((point) =>
 						context.lineTo(
@@ -61,8 +62,9 @@ export const drawShapes = (
 				break;
 			}
 		}
-		if (shape.options.color) {
-			context.fillStyle = shape.options.color as string;
+
+		if (shape.color) {
+			context.fillStyle = shape.color as string;
 			context.fill();
 		}
 

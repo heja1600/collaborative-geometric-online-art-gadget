@@ -1,8 +1,17 @@
 import {
 	ColorType,
+	Ellipse,
+	Path,
+	Rectangle,
 	Shape,
+	ShapeType,
 	SocketEvents,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
+import {
+	getRandomEllipse,
+	getRandomPath,
+	getRandomRectangle,
+} from '@collaborative-geometric-online-art-gadget/utils';
 import { Server, Socket } from 'socket.io';
 
 export class ColorManager {
@@ -17,18 +26,77 @@ export class ColorManager {
 		if (this.index + 1 === this.colors.length) {
 			this.index = 0;
 		}
-		return this.colors[this.index];
+		return this.colors[++this.index];
 	}
 }
 
+const defaulShapeSettings: ShapeManagerSettings = {
+	scaleRatio: 0.1,
+	maxShapes: 40,
+};
+
+export interface ShapeManagerSettings {
+	scaleRatio: number;
+	maxShapes: number;
+}
+
+export const randomRange = (min: number, max: number): number => {
+	return min + Math.random() * (max - min);
+};
+
 export class ShapeManager {
 	private shapes: Shape[];
-	constructor(private readonly server: Server, private maxShapes = 40) {
+	constructor(
+		private readonly server: Server,
+		private settings?: ShapeManagerSettings
+	) {
+		this.settings = { ...defaulShapeSettings, ...settings };
 		this.shapes = [];
 	}
 
+	reshape(shape: Shape) {
+		switch (shape.type) {
+			case ShapeType.RECTANGLE: {
+				const rectangle = shape as Rectangle;
+				shape = getRandomRectangle(
+					rectangle.width,
+					rectangle.height,
+					this.settings.scaleRatio,
+					rectangle.color
+				);
+
+				break;
+			}
+			case ShapeType.ELLIPSE: {
+				const ellipse = shape as Ellipse;
+
+				shape = {
+					...getRandomEllipse(
+						ellipse.radiusX,
+						ellipse.radiusY,
+						this.settings.scaleRatio,
+						ellipse.color
+					),
+					...{ color: shape.color },
+				};
+
+				break;
+			}
+			case ShapeType.PATH: {
+				const path = shape as Path;
+
+				shape = {
+					...getRandomPath(path.points, this.settings.scaleRatio, path.color),
+					...{ color: shape.color },
+				};
+				break;
+			}
+		}
+		return shape;
+	}
 	addShape(shape: Shape) {
-		if (this.shapes.length === this.maxShapes) {
+		shape = this.reshape(shape);
+		if (this.shapes.length === this.settings.maxShapes) {
 			/** Update all shapes and inform clients */
 			this.shapes = [shape];
 			this.server.sockets.emit(SocketEvents.UPDATE_SHAPES, this.shapes);

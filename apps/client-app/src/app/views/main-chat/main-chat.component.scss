@@ -1,17 +1,25 @@
 .chat-shapes {
 	position: fixed;
-	bottom: 0;
+	bottom: 5px;
 	margin: auto;
-	width: 100%;
+	align-items: center;
+	display: block;
+	left: 50%;
+	transform: translate(-50%, 0);
+
 	.chat-shapes__list {
 		display: flex;
 		flex-direction: row;
 		list-style: none;
 		justify-content: center;
-		padding-left: 0;
+
 		.chat-shapes__item {
 			cursor: pointer;
-			padding: 5px;
+			padding-right: 10px;
+			padding-left: 10px;
+			&:not(:last-child) {
+				border-right: 1px solid #eee;
+			}
 		}
 	}
 }
@@ -25,4 +33,10 @@
 	height: 100vh;
 	z-index: 10;
 	background-color: rgba(0, 0, 0, 0.5); /*dim the background*/
+}
+
+.chat-info {
+	position: fixed;
+	right: 5px;
+	top: 5px;
 }
