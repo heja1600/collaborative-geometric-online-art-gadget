@@ -1,0 +1,12 @@
+<shapes-renderer class="shapesRenderer"></shapes-renderer>
+
+<div class="chat-shapes">
+	<ul class="chat-shapes__list">
+		<li class="chat-shapes__item" *ngFor="let shape of defaultShapes">
+			<shape-renderer
+				(click)="onShapeClick(shape)"
+				[shape]="shape"
+			></shape-renderer>
+		</li>
+	</ul>
+</div>

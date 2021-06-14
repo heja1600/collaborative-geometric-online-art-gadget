@@ -1,0 +1,28 @@
+.chat-shapes {
+	position: fixed;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	.chat-shapes__list {
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+		justify-content: center;
+		padding-left: 0;
+		.chat-shapes__item {
+			cursor: pointer;
+			padding: 5px;
+		}
+	}
+}
+
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, 0.5); /*dim the background*/
+}
