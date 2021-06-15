@@ -17,6 +17,7 @@ The project utilizes the following tech:
 
 This is a [Nx Workspace](https://nx.dev/) and has the following folder structure:
 
+```
 .
 ├── ...
 ├── apps                    # The worskpace applications
@@ -27,7 +28,7 @@ This is a [Nx Workspace](https://nx.dev/) and has the following folder structure
 │   ├── interfaces          # Interfaces shared between applications
 │   └── utils               # Utility functions shared between applications
 └── ...
-
+``` 
 ## Commands
 
 Run tests
