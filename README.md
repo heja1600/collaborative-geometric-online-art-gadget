@@ -29,11 +29,19 @@ This is a [Nx Workspace](https://nx.dev/) and has the following folder structure
 │   └── utils               # Utility functions shared between applications
 └── ...
 ``` 
-## Commands
 
-Install all packages 
+## Prerequisites
+
+1. Install all packages 
 
 > npm install
+
+2. Create a [.env](.env) file in root folder, check [example file](.env.example)
+
+
+## Commands
+
+
 
 Run tests
 
