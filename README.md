@@ -21,9 +21,9 @@ This is a [Nx Workspace](https://nx.dev/) and has the following folder structure
 .
 ├── ...
 ├── apps                    # The worskpace applications
-│   ├── client-app          # Frontend/[Angular](https://angular.io/) application that clients uses
-│   ├── client-app-e2e      # Frontend/[Angular](https://angular.io/) application End-to-end, integration tests (alternatively `e2e`)
-│   └── server-app          # Backend/[NodeJS](https://nodejs.dev/) application controlling shape surface and clients
+│   ├── client-app          # Frontend/Angular application that clients uses
+│   ├── client-app-e2e      # Frontend/Angular application End-to-end, integration tests (alternatively `e2e`)
+│   └── server-app          # Backend/NodeJS application controlling shape surface and clients
 ├── libs                    # The worskpace applications
 │   ├── interfaces          # Interfaces shared between applications
 │   └── utils               # Utility functions shared between applications
