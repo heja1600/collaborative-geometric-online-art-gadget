@@ -9,7 +9,7 @@ The project utilizes the following tech:
 - [NodeJS](https://nodejs.dev/)
 - [Nx Workspace](https://nx.dev/)
 
-![Visualization of the chat with four clients](https://user-images.githubusercontent.com/43444902/122090866-8157b080-ce08-11eb-87c9-ef95e81f4d01.gif?style=centerme)
+![Visualization of the chat with four clients](https://user-images.githubusercontent.com/43444902/122127902-2b006700-ce34-11eb-9fa9-f16b5caf84ca.gif?style=centerme)
 
 ![Logic overview](https://user-images.githubusercontent.com/43444902/122124758-04403180-ce30-11eb-9e43-ef77c7c8bbbb.png)
 
@@ -17,18 +17,23 @@ The project utilizes the following tech:
 
 This is a [Nx Workspace](https://nx.dev/) and has the following folder structure:
 
+```
 .
 ├── ...
 ├── apps                    # The worskpace applications
-│   ├── client-app          # Frontend/[Angular](https://angular.io/) application that clients uses
-│   ├── client-app-e2e      # Frontend/[Angular](https://angular.io/) application End-to-end, integration tests (alternatively `e2e`)
-│   └── server-app          # Backend/[NodeJS](https://nodejs.dev/) application controlling shape surface and clients
+│   ├── client-app          # Frontend/Angular application that clients uses
+│   ├── client-app-e2e      # Frontend/Angular application End-to-end, integration tests (alternatively `e2e`)
+│   └── server-app          # Backend/NodeJS application controlling shape surface and clients
 ├── libs                    # The worskpace applications
 │   ├── interfaces          # Interfaces shared between applications
 │   └── utils               # Utility functions shared between applications
 └── ...
-
+``` 
 ## Commands
+
+Install all packages 
+
+> npm install
 
 Run tests
 
