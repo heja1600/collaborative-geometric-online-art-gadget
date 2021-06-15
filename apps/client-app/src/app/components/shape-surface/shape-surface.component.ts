@@ -13,12 +13,11 @@ import { ShapeController } from '../../controllers/shape.controller';
 import { drawShapesToCanvas } from '../../utils/canvas-drawer';
 
 @Component({
-	selector: 'shapes-renderer',
-	templateUrl: './shapes-renderer.component.html',
-	styleUrls: ['./shapes-renderer.component.scss'],
+	selector: 'shape-surface',
+	templateUrl: './shape-surface.component.html',
+	styleUrls: ['./shape-surface.component.scss'],
 })
-export class ShapesRendererComponent
-	implements OnInit, AfterViewInit, OnDestroy {
+export class ShapeSurfaceComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('shapesCanvas', { static: false })
 	shapesCanvas!: ElementRef<HTMLCanvasElement>;
 
@@ -63,6 +62,12 @@ export class ShapesRendererComponent
 	}
 
 	updateCanvasDimensions() {
+		// fixes blurry zooming
+		// ({
+		// 	width: this.context.canvas.width,
+		// 	height: this.context.canvas.height,
+		// } = fitHeightAndWidth(2048 * 1080, window.innerWidth, window.innerHeight));
+
 		this.context.canvas.width = window.innerWidth;
 		this.context.canvas.height = window.innerHeight;
 	}

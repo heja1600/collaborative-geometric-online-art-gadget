@@ -7,15 +7,15 @@ import {
 	SocketEvents,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
 import {
-	moveEllipseRandomly,
-	movePathRandomly,
-	moveRectangleRandomly,
+	getRandomEllipse,
+	getRandomPath,
+	getRandomRectangle,
 } from '@collaborative-geometric-online-art-gadget/utils';
 import { Server, Socket } from 'socket.io';
 import { ColorManager } from '../utils/color.manager';
 
 const defaulShapeSettings: ShapeControllerSettings = {
-	scaleRatio: 0.1,
+	scaleRatio: 0.1, // determing the maximum amount of size each shape should compared to 1:1 
 	maxShapes: 40,
 };
 
@@ -56,7 +56,7 @@ export class ShapeController {
 		switch (shape.type) {
 			case ShapeType.RECTANGLE: {
 				const rectangle = shape as Rectangle;
-				shape = moveRectangleRandomly(
+				shape = getRandomRectangle(
 					rectangle.width,
 					rectangle.height,
 					this.settings.scaleRatio,
@@ -69,7 +69,7 @@ export class ShapeController {
 				const ellipse = shape as Ellipse;
 
 				shape = {
-					...moveEllipseRandomly(
+					...getRandomEllipse(
 						ellipse.radiusX,
 						ellipse.radiusY,
 						this.settings.scaleRatio,
@@ -84,11 +84,7 @@ export class ShapeController {
 				const path = shape as Path;
 
 				shape = {
-					...movePathRandomly(
-						path.points,
-						this.settings.scaleRatio,
-						path.color
-					),
+					...getRandomPath(path.points, this.settings.scaleRatio, path.color),
 					...{ color: shape.color },
 				};
 				break;

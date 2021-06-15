@@ -21,6 +21,7 @@ export class ShapeController {
 		this._onShapesUpdate = new Subject();
 		this._onAssignColor = new Subject();
 		this._onAddShape = new Subject();
+		this._onDiscconect = new Subject();
 
 		this.socket = io('http://localhost:3000');
 
@@ -31,10 +32,10 @@ export class ShapeController {
 			this._onDiscconect.next();
 		});
 
-		this.addEvents();
+		this.listenToEvents();
 	}
 
-	private addEvents() {
+	private listenToEvents() {
 		/** Emits */
 		this.socket.on(SocketEvents.ASSIGN_COLOR, (color) =>
 			this._onAssignColor.next(color)
@@ -49,11 +50,14 @@ export class ShapeController {
 		);
 	}
 
+	/** Trigger event  */
 	addShape(shape: Shape) {
 		if (this.socket) {
 			this.socket.emit('add_shape', shape);
 		}
 	}
+
+	/** Observables / events from socket */
 
 	onShapesUpdate(): Observable<Shape[]> {
 		return this._onShapesUpdate.asObservable();

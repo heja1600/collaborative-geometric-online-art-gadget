@@ -9,6 +9,26 @@ import {
 } from '@collaborative-geometric-online-art-gadget/interfaces';
 
 /**
+ * @description rescales width and height to fit given pixels
+ * Solution found at {@link https://www.competoid.com/quiz_answers/14-0-59901/Question_answers/}
+ * A little bit of because of rounding
+ *  */
+export const fitHeightAndWidth = (
+	pixels: number,
+	width: number,
+	height: number
+): {
+	height: number;
+	width: number;
+} => {
+	const x = Math.pow(pixels / (width * height), 0.5);
+	return {
+		width: width * x,
+		height: height * x,
+	};
+};
+
+/**
  * @description Normalization of points
  * @todo center normalized points
  */
@@ -37,6 +57,7 @@ export const normalizePoints = (...points: Point[]): Point[] => {
 		(maxX, value) => (maxX > value.x ? maxX : value.x),
 		points[0].x
 	);
+
 	const max = maxX > maxY ? maxX : maxY;
 
 	const largerThanOne = max > 1; // whether values should shrink or grow
@@ -107,6 +128,11 @@ export const randomRange = (min: number, max: number) => {
 	return min + Math.random() * (max - min);
 };
 
+/**
+ * Normalizes a shape
+ * @param shapes
+ * @returns
+ */
 export const normalizeShapes = (...shapes: Shape[]) => {
 	shapes.forEach((shape) => {
 		switch (shape.type) {
@@ -129,8 +155,15 @@ export const normalizeShapes = (...shapes: Shape[]) => {
 	});
 	return shapes;
 };
-
-export const moveRectangleRandomly = (
+/**
+ * @description Creates a random rectangle and keeps the height/width ratio
+ * @param width
+ * @param height
+ * @param scale
+ * @param color
+ * @returns
+ */
+export const getRandomRectangle = (
 	width: number,
 	height: number,
 	scale: number = 1,
@@ -149,7 +182,10 @@ export const moveRectangleRandomly = (
 	});
 };
 
-export const moveEllipseRandomly = (
+/**
+ * @description Creates a random ellipse and keeps the radius ratio
+ */
+export const getRandomEllipse = (
 	radiusX: number,
 	radiusY: number,
 	scale: number = 1,
@@ -166,7 +202,10 @@ export const moveEllipseRandomly = (
 	});
 };
 
-export const movePathRandomly = (
+/**
+ * @description Creates a random ellipse and keeps the radius ratio
+ */
+export const getRandomPath = (
 	points: Point[],
 	scale: number = 1,
 	color?: ColorType

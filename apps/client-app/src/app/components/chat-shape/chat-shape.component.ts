@@ -15,12 +15,11 @@ import {
 import { drawShapesToCanvas } from '../../utils/canvas-drawer';
 
 @Component({
-	selector: 'shape-renderer',
-	templateUrl: './shape-renderer.component.html',
-	styleUrls: ['./shape-renderer.component.scss'],
+	selector: 'chat-shape',
+	templateUrl: './chat-shape.component.html',
+	styleUrls: ['./chat-shape.component.scss'],
 })
-export class ShapeRendererComponent
-	implements OnInit, AfterViewInit, OnChanges {
+export class ChatShapeComponent implements OnInit, AfterViewInit, OnChanges {
 	@ViewChild('shapeCanvas', { static: false })
 	shapeCanvas!: ElementRef<HTMLCanvasElement>;
 	@Input() shape: Shape;

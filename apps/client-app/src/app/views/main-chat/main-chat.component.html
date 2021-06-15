@@ -1,5 +1,5 @@
 <div class="shapes-renderer" data-test="shapes-renderer">
-	<shapes-renderer></shapes-renderer>
+	<shape-surface></shape-surface>
 </div>
 <div data-test="chat-info">
 	<chat-info class="chat-info"></chat-info>
@@ -12,11 +12,11 @@
 			data-test="shape-item"
 			*ngFor="let shape of defaultShapes"
 		>
-			<shape-renderer
+			<chat-shape
 				(click)="onShapeClick(shape)"
 				[shape]="shape"
 				[color]="color"
-			></shape-renderer>
+			></chat-shape>
 		</li>
 	</ul>
 </div>

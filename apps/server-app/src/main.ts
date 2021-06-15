@@ -1,15 +1,16 @@
-import * as express from 'express';
+import express from 'express';
+import { Express } from 'express';
 import * as http from 'http';
 import { Server } from 'socket.io';
-import { Express } from 'express';
 import { Application } from './app/app';
+import { corsUrl, port } from './app/config';
 
 const app: Express = express();
 const server = http.createServer(app);
 
-const io = new Server(server, { cors: { origin: '*' } });
+const io = new Server(server, { cors: { origin: corsUrl } });
 
-server.listen(3000, () => {
+server.listen(port, () => {
 	console.log('listening on *:3000');
 });
 

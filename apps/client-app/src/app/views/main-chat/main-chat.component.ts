@@ -3,6 +3,7 @@ import {
 	ColorType,
 	Shape,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
+import { normalizeShapes } from '@collaborative-geometric-online-art-gadget/utils';
 import { Subscription } from 'rxjs';
 import { defaultShapes } from '../../constants/default-shapes';
 import { ShapeController } from '../../controllers/shape.controller';
@@ -14,7 +15,7 @@ import { ShapeController } from '../../controllers/shape.controller';
 	providers: [ShapeController],
 })
 export class MainChatComponent implements OnInit, OnDestroy {
-	defaultShapes = defaultShapes;
+	defaultShapes = normalizeShapes(...defaultShapes);
 	color: ColorType;
 	assignColorSubscription: Subscription;
 	constructor(private readonly controller: ShapeController) {}

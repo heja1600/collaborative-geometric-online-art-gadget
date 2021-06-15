@@ -1,8 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatInfoComponent } from '../../components/chat-info/chat-info.component';
-import { ShapeRendererComponent } from '../../components/shape-renderer/shape-renderer.component';
-import { ShapesRendererComponent } from '../../components/shapes-renderer/shapes-renderer.component';
+import { ChatShapeComponent } from '../../components/chat-shape/chat-shape.component';
+import { ShapeSurfaceComponent } from '../../components/shape-surface/shape-surface.component';
 import { ShapeController } from '../../controllers/shape.controller';
 import { MainChatComponent } from './main-chat.component';
 
@@ -14,8 +14,8 @@ describe('MainChatComponent', () => {
 		await TestBed.configureTestingModule({
 			declarations: [
 				MainChatComponent,
-				ShapeRendererComponent,
-				ShapesRendererComponent,
+				ChatShapeComponent,
+				ShapeSurfaceComponent,
 				ChatInfoComponent,
 			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ShapeRendererComponent } from './shape-renderer.component';
+import { ChatShapeComponent } from './chat-shape.component';
 
 describe('ShapeRendererComponent', () => {
-	let component: ShapeRendererComponent;
-	let fixture: ComponentFixture<ShapeRendererComponent>;
+	let component: ChatShapeComponent;
+	let fixture: ComponentFixture<ChatShapeComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ShapeRendererComponent],
+			declarations: [ChatShapeComponent],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ShapeRendererComponent);
+		fixture = TestBed.createComponent(ChatShapeComponent);
 		fixture.detectChanges();
 		component = fixture.componentInstance;
 	});

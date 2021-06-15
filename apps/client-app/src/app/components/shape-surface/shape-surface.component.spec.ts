@@ -2,21 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { defaultShapes } from '../../constants/default-shapes';
 import { ShapeController } from '../../controllers/shape.controller';
-import { ShapesRendererComponent } from './shapes-renderer.component';
+import { ShapeSurfaceComponent } from './shape-surface.component';
 
 describe('ShapesRendererComponent', () => {
-	let component: ShapesRendererComponent;
-	let fixture: ComponentFixture<ShapesRendererComponent>;
+	let component: ShapeSurfaceComponent;
+	let fixture: ComponentFixture<ShapeSurfaceComponent>;
 	let controller: ShapeController;
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ShapesRendererComponent],
+			declarations: [ShapeSurfaceComponent],
 			providers: [ShapeController],
 		}).compileComponents();
 	});
 
 	beforeEach(async () => {
-		fixture = TestBed.createComponent(ShapesRendererComponent);
+		fixture = TestBed.createComponent(ShapeSurfaceComponent);
 		component = fixture.componentInstance;
 		controller = TestBed.inject(ShapeController);
 		jest
