@@ -9,7 +9,7 @@ The project utilizes the following tech:
 - [NodeJS](https://nodejs.dev/)
 - [Nx Workspace](https://nx.dev/)
 
-![Visualization of the chat with four clients](https://user-images.githubusercontent.com/43444902/122090866-8157b080-ce08-11eb-87c9-ef95e81f4d01.gif?style=centerme)
+![Visualization of the chat with four clients](https://user-images.githubusercontent.com/43444902/122127902-2b006700-ce34-11eb-9fa9-f16b5caf84ca.gif?style=centerme)
 
 ![Logic overview](https://user-images.githubusercontent.com/43444902/122124758-04403180-ce30-11eb-9e43-ef77c7c8bbbb.png)
 
