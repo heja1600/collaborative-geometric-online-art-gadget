@@ -31,6 +31,10 @@ This is a [Nx Workspace](https://nx.dev/) and has the following folder structure
 ``` 
 ## Commands
 
+Install all packages 
+
+> npm install
+
 Run tests
 
 > npm run test
