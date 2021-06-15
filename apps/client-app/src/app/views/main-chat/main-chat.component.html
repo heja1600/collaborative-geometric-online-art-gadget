@@ -1,8 +1,17 @@
-<shapes-renderer class="shapes-renderer"></shapes-renderer>
-<chat-info class="chat-info"></chat-info>
-<div class="chat-shapes">
+<div class="shapes-renderer" data-test="shapes-renderer">
+	<shapes-renderer></shapes-renderer>
+</div>
+<div data-test="chat-info">
+	<chat-info class="chat-info"></chat-info>
+</div>
+
+<div class="chat-shapes" data-test="chat-shapes">
 	<ul class="chat-shapes__list card">
-		<li class="chat-shapes__item" *ngFor="let shape of defaultShapes">
+		<li
+			class="chat-shapes__item"
+			data-test="shape-item"
+			*ngFor="let shape of defaultShapes"
+		>
 			<shape-renderer
 				(click)="onShapeClick(shape)"
 				[shape]="shape"

@@ -4,6 +4,8 @@ import {
 	Path,
 	Point,
 	Rectangle,
+	Shape,
+	ShapeType,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
 
 /**
@@ -76,14 +78,59 @@ export const normalizeRectangle = (rectangle: Rectangle) => {
  * @todo finish
  */
 export const normalizeElippse = (ellipse: Ellipse) => {
+	let points = [
+		{ x: ellipse.x, y: ellipse.y },
+		{ x: ellipse.x, y: ellipse.y + ellipse.radiusY },
+		{ x: ellipse.x + ellipse.radiusX, y: ellipse.y + ellipse.radiusY },
+		{ x: ellipse.x + ellipse.radiusX, y: ellipse.y },
+		{ x: ellipse.x, y: ellipse.y - ellipse.radiusY },
+		{ x: ellipse.x - ellipse.radiusX, y: ellipse.y - ellipse.radiusY },
+		{ x: ellipse.x - ellipse.radiusX, y: ellipse.y },
+	];
+
+	points = normalizePoints(...points);
+
+	/** Reconstruct rectangle */
+	ellipse.radiusY = points[2].y - points[0].y;
+	ellipse.radiusX = points[2].x - points[0].x;
+	ellipse.x = points[0].x;
+	ellipse.y = points[0].y;
+
 	return ellipse;
 };
 
-const randomRange = (min: number, max: number) => {
+export const randomRange = (min: number, max: number) => {
+	if (min > max) {
+		throw Error(`min value of ${min} is greater than ${max}`);
+	}
+
 	return min + Math.random() * (max - min);
 };
 
-export const getRandomRectangle = (
+export const normalizeShapes = (...shapes: Shape[]) => {
+	shapes.forEach((shape) => {
+		switch (shape.type) {
+			case ShapeType.RECTANGLE: {
+				shape = normalizeRectangle(shape as Rectangle);
+				break;
+			}
+			case ShapeType.ELLIPSE: {
+				shape = normalizeElippse(shape as Ellipse);
+				break;
+			}
+			case ShapeType.PATH: {
+				shape = normalizePath(shape as Path);
+				break;
+			}
+			default: {
+				throw new Error(`Shape with type: ${shape.type} is not supported`);
+			}
+		}
+	});
+	return shapes;
+};
+
+export const moveRectangleRandomly = (
 	width: number,
 	height: number,
 	scale: number = 1,
@@ -102,7 +149,7 @@ export const getRandomRectangle = (
 	});
 };
 
-export const getRandomEllipse = (
+export const moveEllipseRandomly = (
 	radiusX: number,
 	radiusY: number,
 	scale: number = 1,
@@ -119,7 +166,7 @@ export const getRandomEllipse = (
 	});
 };
 
-export const getRandomPath = (
+export const movePathRandomly = (
 	points: Point[],
 	scale: number = 1,
 	color?: ColorType

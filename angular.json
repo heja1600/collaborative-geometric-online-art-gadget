@@ -36,7 +36,7 @@
 			"projectType": "application",
 			"root": "apps/client-app",
 			"sourceRoot": "apps/client-app/src",
-			"prefix": "collaborative-geometric-online-art-gadget",
+			"prefix": "",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
@@ -120,7 +120,8 @@
 					"outputs": ["coverage/apps/client-app"],
 					"options": {
 						"jestConfig": "apps/client-app/jest.config.js",
-						"passWithNoTests": true
+						"passWithNoTests": true,
+						"codeCoverage": true
 					}
 				}
 			}
@@ -196,7 +197,8 @@
 					"outputs": ["coverage/apps/server-app"],
 					"options": {
 						"jestConfig": "apps/server-app/jest.config.js",
-						"passWithNoTests": true
+						"passWithNoTests": true,
+						"codeCoverage": true
 					}
 				}
 			}
@@ -217,7 +219,8 @@
 					"outputs": ["coverage/libs/interfaces"],
 					"options": {
 						"jestConfig": "libs/interfaces/jest.config.js",
-						"passWithNoTests": true
+						"passWithNoTests": true,
+						"codeCoverage": true
 					}
 				}
 			}
@@ -238,7 +241,8 @@
 					"outputs": ["coverage/libs/utils"],
 					"options": {
 						"jestConfig": "libs/utils/jest.config.js",
-						"passWithNoTests": true
+						"passWithNoTests": true,
+						"codeCoverage": true
 					}
 				}
 			}

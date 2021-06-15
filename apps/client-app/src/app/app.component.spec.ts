@@ -1,31 +1,28 @@
-import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MainChatComponent } from './views/main-chat/main-chat.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-    }).compileComponents();
-  });
+	let app: AppComponent;
+	let fixture: ComponentFixture<AppComponent>;
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [AppComponent, MainChatComponent],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
+		}).compileComponents();
+	});
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(AppComponent);
+		fixture.detectChanges();
+		app = fixture.componentInstance;
+	});
+	it('should create the app', () => {
+		expect(app).toBeTruthy();
+	});
 
-  it(`should have as title 'client-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('client-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to client-app!'
-    );
-  });
+	it(`should have as title 'client-app'`, () => {
+		expect(app.title).toEqual('client-app');
+	});
 });

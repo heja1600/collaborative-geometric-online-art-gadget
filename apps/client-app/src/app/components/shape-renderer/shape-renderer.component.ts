@@ -12,7 +12,7 @@ import {
 	ColorType,
 	Shape,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
-import { addShapesToCanvas } from '../../utils/fill-canvas';
+import { drawShapesToCanvas } from '../../utils/canvas-drawer';
 
 @Component({
 	selector: 'shape-renderer',
@@ -54,7 +54,7 @@ export class ShapeRendererComponent
 			typeof this.context !== 'undefined' &&
 			typeof this.shape !== 'undefined'
 		) {
-			addShapesToCanvas(this.context, this.shape);
+			drawShapesToCanvas(this.context, this.shape);
 		}
 	}
 }

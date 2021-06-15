@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ShapeService } from '../../services/shape-service';
+import { ShapeController } from '../../controllers/shape.controller';
 
 @Component({
 	selector: 'chat-info',
@@ -9,22 +9,22 @@ import { ShapeService } from '../../services/shape-service';
 })
 export class ChatInfoComponent implements OnInit, OnDestroy {
 	shapeCounter = 0;
-	clientCounter = 0;
 
 	onShapeAddSubscription: Subscription;
 	onShapesUpdate: Subscription;
-	constructor(private readonly shapeService: ShapeService) {}
+
+	constructor(private readonly controller: ShapeController) {}
 	ngOnDestroy(): void {
 		this.onShapeAddSubscription.unsubscribe();
 		this.onShapeAddSubscription.unsubscribe();
 	}
 
 	ngOnInit(): void {
-		this.onShapesUpdate = this.shapeService
+		this.onShapesUpdate = this.controller
 			.onShapesUpdate()
 			.subscribe((shapes) => (this.shapeCounter = shapes.length));
 
-		this.onShapeAddSubscription = this.shapeService
+		this.onShapeAddSubscription = this.controller
 			.onAddShape()
 			.subscribe(() => this.shapeCounter++);
 	}

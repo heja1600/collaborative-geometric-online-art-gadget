@@ -6,7 +6,7 @@ import {
 	Shape,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
 
-export const addShapesToCanvas = (
+export const drawShapesToCanvas = (
 	context: CanvasRenderingContext2D,
 	...shapes: Shape[]
 ): void => {

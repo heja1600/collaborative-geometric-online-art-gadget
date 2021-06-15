@@ -21,7 +21,7 @@
 					"error",
 					{
 						"type": "element",
-						"prefix": "collaborative-geometric-online-art-gadget",
+						"prefix": "",
 						"style": "kebab-case"
 					}
 				]

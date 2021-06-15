@@ -1,8 +1,8 @@
 import {
-	Rectangle,
 	ColorType,
 	Ellipse,
 	Path,
+	Rectangle,
 } from '@collaborative-geometric-online-art-gadget/interfaces';
 import {
 	normalizeElippse,

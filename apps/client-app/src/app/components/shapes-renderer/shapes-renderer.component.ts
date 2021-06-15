@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { Shape } from '@collaborative-geometric-online-art-gadget/interfaces';
 import { Subscription } from 'rxjs';
-import { ShapeService } from '../../services/shape-service';
-import { addShapesToCanvas } from '../../utils/fill-canvas';
+import { ShapeController } from '../../controllers/shape.controller';
+import { drawShapesToCanvas } from '../../utils/canvas-drawer';
 
 @Component({
 	selector: 'shapes-renderer',
@@ -28,10 +28,7 @@ export class ShapesRendererComponent
 
 	private onAddShapeSubscription: Subscription;
 	private onShapesUpdateSubscription: Subscription;
-	constructor(
-		private readonly elementRef: ElementRef,
-		private readonly shapeService: ShapeService
-	) {
+	constructor(private readonly controller: ShapeController) {
 		this.shapes = [];
 	}
 	ngOnInit(): void {}
@@ -40,7 +37,7 @@ export class ShapesRendererComponent
 		this.context = this.shapesCanvas.nativeElement.getContext('2d');
 		this.updateCanvasDimensions();
 
-		this.onShapesUpdateSubscription = this.shapeService
+		this.onShapesUpdateSubscription = this.controller
 			.onShapesUpdate()
 			.subscribe((shapes) => {
 				this.shapes = shapes;
@@ -48,7 +45,7 @@ export class ShapesRendererComponent
 				this.renderShapes(this.shapes);
 			});
 
-		this.onAddShapeSubscription = this.shapeService
+		this.onAddShapeSubscription = this.controller
 			.onAddShape()
 			.subscribe((shape) => {
 				this.shapes.push(shape);
@@ -75,7 +72,7 @@ export class ShapesRendererComponent
 			typeof this.context !== 'undefined' &&
 			typeof this.shapes !== 'undefined'
 		) {
-			addShapesToCanvas(this.context, ...shapes);
+			drawShapesToCanvas(this.context, ...shapes);
 		}
 	}
 

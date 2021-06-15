@@ -3,7 +3,6 @@ import { ColorType } from './colors';
 export enum ShapeType {
 	ELLIPSE = 0,
 	RECTANGLE = 1,
-	TRIANGLE = 2,
 	PATH = 3,
 }
 
@@ -78,32 +77,5 @@ export class Rectangle extends Shape implements RectangleProperties {
 		this.height = options.height;
 		this.x = options.x;
 		this.y = options.y;
-	}
-}
-
-export interface TriangleProperties {
-	x1: number;
-	y1: number;
-	x2: number;
-	y2: number;
-	x3: number;
-	y3: number;
-}
-export class Triangle extends Shape implements TriangleProperties {
-	type: ShapeType = ShapeType.TRIANGLE;
-	x1: number;
-	y1: number;
-	x2: number;
-	y2: number;
-	x3: number;
-	y3: number;
-	constructor(options: ShapeProperties & TriangleProperties) {
-		super(options);
-		this.x1 = options.x1;
-		this.y1 = options.y1;
-		this.x2 = options.x2;
-		this.y2 = options.y2;
-		this.x3 = options.x3;
-		this.y3 = options.y3;
 	}
 }
