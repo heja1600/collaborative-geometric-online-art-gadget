@@ -36,7 +36,7 @@ This is a [Nx Workspace](https://nx.dev/) and has the following folder structure
 
 > npm install
 
-2. Create a [.env](.env) file in root folder, check [example file](.env.example)
+2. Create a .env file in root folder, check [example file](.env.example)
 
 
 ## Commands
