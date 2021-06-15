@@ -20,3 +20,5 @@ Run tests
 Start all applications
 
 > npm run dev
+
+**Visit** [localhost:4200](http://localhost:4200)
