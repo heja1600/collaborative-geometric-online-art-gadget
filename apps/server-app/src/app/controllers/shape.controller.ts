@@ -51,7 +51,7 @@ export class ShapeController {
 			});
 		});
 	}
-
+    
 	reshape(shape: Shape) {
 		switch (shape.type) {
 			case ShapeType.RECTANGLE: {

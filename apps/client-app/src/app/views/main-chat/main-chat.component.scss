@@ -16,6 +16,8 @@
 		.chat-shapes__item {
 			cursor: pointer;
 			padding-right: 10px;
+        
+            height: 100%;
 			padding-left: 10px;
 			&:not(:last-child) {
 				border-right: 1px solid #eee;
@@ -24,19 +26,42 @@
 	}
 }
 
-#overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 10;
-	background-color: rgba(0, 0, 0, 0.5); /*dim the background*/
-}
 
 .chat-info {
 	position: fixed;
 	right: 5px;
 	top: 5px;
 }
+
+
+@media only screen and (max-width: 1000px) {
+    .chat-shapes .chat-shapes__list .chat-shapes__item {
+        padding-right: 5px ;
+        padding-left: 5px ;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .chat-shapes .chat-shapes__list .chat-shapes__item {
+        padding-right: 4px ;
+        padding-left: 4px ;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .chat-shapes .chat-shapes__list .chat-shapes__item {
+        padding-right: 3px ;
+        padding-left: 3px ;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .chat-shapes {
+        width: 100%;
+        bottom: 0px;
+    }
+    .chat-shapes__list { 
+        border-radius: 0;
+    }
+   
+}
+
